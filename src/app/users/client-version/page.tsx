@@ -1,5 +1,6 @@
 "use client";
 import { User } from "@/types";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function UsersClientVersion() {
@@ -20,10 +21,16 @@ export default function UsersClientVersion() {
     setUsers(arr);
   }
   return (
-    <div>
-      {users.map((user) => (
-        <li key={user.id}>{user.name}</li>
-      ))}
+    <div className="max-w-7xl mx-auto px-8 pb-16 mt-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        {users.map((user) => (
+          <li key={user.id}>
+            <Link className="my-2" href={`/users/server-version/${user.id}`}>
+              {user.name}
+            </Link>
+          </li>
+        ))}
+      </div>
     </div>
   );
 }

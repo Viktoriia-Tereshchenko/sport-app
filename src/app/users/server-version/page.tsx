@@ -1,5 +1,6 @@
 import { User } from "@/types";
 import { revalidateTag } from "next/cache";
+import Link from "next/link";
 
 // by default - server component
 const UsersServerVersion = async () => {
@@ -19,7 +20,7 @@ const UsersServerVersion = async () => {
 
   // 2. cache: "no-store" - кэширование не используется: каждый раз запрос
 
-  // 3. Revalidate вариант 
+  // 3. Revalidate вариант
   // next:{revalidate: 60} - запросит обновление страницы каждые 60 сек
   // для чего: новости, курсы валют, продукты
 
@@ -34,11 +35,18 @@ const UsersServerVersion = async () => {
   }
   const users = await res.json();
   // console.log(users);  // вызов на server-е
+
   return (
-    <div>
-      {users.map((user: User) => (
-        <li key={user.id}>{user.name}</li>
-      ))}
+    <div className="max-w-7xl mx-auto px-8 pb-16 mt-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        {users.map((user: User) => (
+          <li key={user.id}>
+            <Link className="my-2" href={`/users/server-version/${user.id}`}>
+              {user.name}
+            </Link>
+          </li>
+        ))}
+      </div>
     </div>
   );
 };
