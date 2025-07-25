@@ -1,14 +1,14 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* цвета в светлой теме */
+/* цвета в светлой теме  */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f1f1f2;
+  --foreground: #1995ad;
   /* primary secondary accent warning info danger/error border*/
-  --primary: #b39cd0;
-  --secondary: #e89dcd;
-  --border: rgb(187, 169, 169);
+  --primary: #bcbabe;
+  --secondary: #a1d6e2;
+  --border: #b6a6ca;
   --accent: #ffa3b6;
   --warning: #ffb594;
   --success: #4d8076;
@@ -17,11 +17,11 @@
 
 /* цвета в темной теме */
 .dark {
-  --background: #171717;
-  --foreground: #ffffff;
-  --primary: #b39cd0;
-  --secondary: #8195cf;
-  --border: #b6b6b6;
+  --background: #1995ad;
+  --foreground: #f1f1f2;
+  --primary: #a1d6e2;
+  --secondary: #bcbabe;
+  --border: #b6a6ca;
   --accent: #3a8fc5;
   --warning: #ffb594;
   --success: #4d8076;

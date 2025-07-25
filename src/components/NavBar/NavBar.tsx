@@ -24,10 +24,13 @@ export default function NavBar() {
         Users server
       </Link>
       <Link href={"/products/client-version"} className="hover:text-amber-300">
-        Product client
+        Products client
       </Link>
       <Link href={"/products/server-version"} className="hover:text-amber-300">
-        Product server
+        Products server
+      </Link>
+      <Link href={"/products/create"} className="hover:text-amber-300">
+        Create product
       </Link>
       <Link href={"/categories"} className="hover:text-amber-300">
         Categories

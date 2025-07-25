@@ -23,7 +23,7 @@ export default async function UserInfo({
   const user: User = await res.json();
   return (
     <section className="bg-secondary py-20 px-14 md:px-32 flex justify-center ">
-      <div className="bg-primary w-64 p-8 flex flex-col items-center gap-6 rounded-2xl border-border">
+      <div className="bg-background  w-64 p-8 flex flex-col items-center gap-6 rounded-2xl border-border">
         <h2>{user.name}</h2>
         <Image
           src={user.avatar}
