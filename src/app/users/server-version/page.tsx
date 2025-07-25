@@ -1,5 +1,4 @@
 import { User } from "@/types";
-import { revalidateTag } from "next/cache";
 import Link from "next/link";
 
 // by default - server component
