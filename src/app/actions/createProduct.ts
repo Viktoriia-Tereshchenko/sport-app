@@ -4,21 +4,30 @@ import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 
 const createProduct = async (formData: FormData) => {
-  const title = formData.get("title");
+  const title = formData.get("title")?.toString();
   const price = formData.get("price");
-  const description = formData.get("description");
+  const description = formData.get("description")?.toString();
   const categoryId = formData.get("categoryId");
-  const images = [formData.get("image")];
+  const image = formData.get("image");
+  // const images = [formData.get("image")];
+  // console.log(title, description, categoryId, image, price);
 
-  console.log(formData);
-  await fetch("https://api.escuelajs.co/api/v1/products/", {
+  const res = await fetch("https://api.escuelajs.co/api/v1/products/", {
     method: "POST",
-    body: JSON.stringify({ title, price, description, categoryId, images }),
+    body: JSON.stringify({
+      title,
+      price,
+      description,
+      categoryId,
+      images: [image],
+    }),
     headers: { "Content-Type": "application/json" },
   });
 
-  revalidateTag("products");
-  redirect("/products/server-version");
+  if (res.ok) {
+    revalidateTag("products");
+    redirect("/products/server-version");
+  }
 };
 
 export default createProduct;
