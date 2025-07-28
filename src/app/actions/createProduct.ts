@@ -8,9 +8,9 @@ const createProduct = async (formData: FormData) => {
   const price = formData.get("price");
   const description = formData.get("description")?.toString();
   const categoryId = formData.get("categoryId");
-  const image = formData.get("image");
-  // const images = [formData.get("image")];
-  // console.log(title, description, categoryId, image, price);
+  // const image = formData.get("image");
+  const images = [formData.get("image")];
+  console.log(title, description, categoryId, images, price);
 
   const res = await fetch("https://api.escuelajs.co/api/v1/products/", {
     method: "POST",
@@ -19,7 +19,8 @@ const createProduct = async (formData: FormData) => {
       price,
       description,
       categoryId,
-      images: [image],
+      images,
+      // images: [image],
     }),
     headers: { "Content-Type": "application/json" },
   });

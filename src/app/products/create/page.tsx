@@ -19,7 +19,7 @@ export default async function CreateProduct() {
         />
         <input
           type="text"
-          name="number"
+          name="price"
           placeholder="Price"
           className="border:border rounded p-2 w-100 bg-background text-foreground"
         />

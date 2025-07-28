@@ -1,3 +1,6 @@
+// тут создаем новые таблицы БД и связи между ними
+// потом команда npx drizzle-kit push
+
 import { integer, pgTable, varchar } from "drizzle-orm/pg-core";
 
 export const sportsTable = pgTable("sports", {
@@ -7,8 +10,8 @@ export const sportsTable = pgTable("sports", {
   description: varchar({ length: 255 }).notNull(),
 });
 
-// тут создаем новые таблицы БД
-// таблицы и связи между ними
-// потом команда npx drizzle-kit push
-
-// бесплатная БД  supabase postgres
+export const eventsTable = pgTable("events", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  name: varchar({ length: 255 }).notNull().unique(),
+  description: varchar({ length: 500 }).notNull(),
+});
