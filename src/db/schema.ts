@@ -12,6 +12,10 @@ export const sportsTable = pgTable("sports", {
 
 export const eventsTable = pgTable("events", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: varchar({ length: 255 }).notNull().unique(),
+  name: varchar({ length: 100 }).notNull(),
   description: varchar({ length: 500 }).notNull(),
 });
+
+// 1. Создаем таблицу/ делаем изменения
+// 2. Потом -> generate (создаться файл с миграциями в папке drizzle)
+// 3. Внесение изменений в БД -> migrate
