@@ -1,10 +1,11 @@
 "use client";
 
 import { Product } from "@/types";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 interface ProductCardProps {
   product: Product;
@@ -12,8 +13,17 @@ interface ProductCardProps {
 // chunk, bundle, code splitting
 export default function ProductCard({ product }: ProductCardProps) {
   const router = useRouter();
+
+  const { data: session } = useSession();
+  const [message, setMessage] = useState("");
+
   function handleDelete(id: number) {
-    fetchDelete(id);
+    if (session) {
+      setMessage("");
+      fetchDelete(id);
+    } else {
+      setMessage("You must be authorized!");
+    }
   }
   async function fetchDelete(id: number) {
     const res = await fetch(`https://api.escuelajs.co/api/v1/products/${id}`, {
@@ -26,7 +36,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <li>
-      <div className="bg-gray-200 rounded-xl p-4 shadow-md  border border-gray-100 overflow-hidden relative h-[464px] flex flex-col dark:text-background">
+      <div className="bg-gray-200 rounded-xl p-4 shadow-md  border border-gray-100 overflow-hidden relative h-[504px] flex flex-col dark:text-background">
         <div className="relative mb-4 overflow-hidden rounded-lg flex-shrink-0">
           <Image
             src={product.images[0]}
@@ -53,7 +63,15 @@ export default function ProductCard({ product }: ProductCardProps) {
           >
             Delete
           </button>
-          <Link className="my-2" href={`/products/server-version/${product.id}`}>Details</Link>
+
+          {message && <p className="text-red-600 text-bold pt-2">{message}</p>}
+
+          <Link
+            className="py-2"
+            href={`/products/server-version/${product.id}`}
+          >
+            Details
+          </Link>
         </div>
       </div>
     </li>

@@ -2,8 +2,11 @@ import Link from "next/link";
 import React from "react";
 import ThemeToggler from "../ThemeToggler/ThemeToggles";
 import AuthButton from "../AuthButton/AuthButton";
+import { getServerSession } from "next-auth";
 
-export default function NavBar() {
+export default async function NavBar() {
+  const session = await getServerSession();
+
   return (
     <nav className="flex justify-center gap-6 items-center min-h-12 top-0 flex-wrap">
       <Link href={"/"} className="hover:text-amber-300">
@@ -30,18 +33,24 @@ export default function NavBar() {
       <Link href={"/products/server-version"} className="hover:text-amber-300">
         Products server
       </Link>
-      <Link href={"/products/create"} className="hover:text-amber-300">
-        Create product
-      </Link>
+      {session && (
+        <Link href={"/products/create"} className="hover:text-amber-300">
+          Create product
+        </Link>
+      )}
       <Link href={"/categories"} className="hover:text-amber-300">
         Categories
       </Link>
-      <Link href={"/categories/create"} className="hover:text-amber-300">
-        Create category
-      </Link>
-      <Link href={"/profile"} className="hover:text-amber-300">
-        Profile
-      </Link>
+      {session && (
+        <Link href={"/categories/create"} className="hover:text-amber-300">
+          Create category
+        </Link>
+      )}
+      {session && (
+        <Link href={"/profile"} className="hover:text-amber-300">
+          Profile
+        </Link>
+      )}
       <AuthButton />
       <ThemeToggler />
     </nav>

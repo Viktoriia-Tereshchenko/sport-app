@@ -33,7 +33,7 @@ export default async function UserInfo({
           className="rounded-2xl"
           unoptimized
         />
-        <p className="bg-secondary w-34 sm:w-28 md:w-50 lg:w-60">
+        <p className="bg-secondary w-34 sm:w-28 md:w-50 lg:w-60 text-center break-words">
           {user.email}
         </p>
       </div>
