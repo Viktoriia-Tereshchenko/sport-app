@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import ThemeToggler from "../ThemeToggler/ThemeToggles";
+import AuthButton from "../AuthButton/AuthButton";
 
 export default function NavBar() {
   return (
@@ -38,6 +39,10 @@ export default function NavBar() {
       <Link href={"/categories/create"} className="hover:text-amber-300">
         Create category
       </Link>
+      <Link href={"/profile"} className="hover:text-amber-300">
+        Profile
+      </Link>
+      <AuthButton />
       <ThemeToggler />
     </nav>
   );

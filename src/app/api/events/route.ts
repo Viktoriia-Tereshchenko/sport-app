@@ -1,5 +1,6 @@
 import { db } from "@/db/intex";
 import { eventsTable } from "@/db/schema";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
 
@@ -26,6 +27,13 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await getServerSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    // 401 - когда пользователь не залогинен, например Unauthorized
+    // 403 - когда залогинен, но нет нужно роли Forbidden
+
     const body = await req.json();
     // const { name, description } = EventInsertSchema.parse(body);
     const newEvent = EventInsertSchema.parse(body);

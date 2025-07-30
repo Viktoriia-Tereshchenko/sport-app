@@ -7,8 +7,6 @@ export default function ThemeToggler() {
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  const [enabled, setEnabled] = useState(false);
-
   useEffect(() => {
     setMounted(true);
   }, []);

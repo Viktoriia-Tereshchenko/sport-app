@@ -4,20 +4,25 @@ import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
 
 const SportInsertSchema = z.object({
-  title: z.string().min(3, "Min length is 3").max(100, "Max length is 100"),
+  title: z
+    .string()
+    .min(3, "Title should be at least 3 character lang")
+    .max(100, "Title should be not longer than 100 character"),
   description: z
     .string()
-    .min(3, "Min length is 3")
-    .max(250, "Max length is 250"),
+    .min(3, "Description should be at least 3 character lang")
+    .max(250, "Description should be not longer than 100 character"),
   image: z.string().refine(
     (val) => {
       try {
         new URL(val);
         return true;
-      } catch {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (err) {
         return false;
       }
     },
+    //Invalid URL of image
     { message: "The image URL must be correct" }
   ),
 });
@@ -35,7 +40,7 @@ export async function POST(req: NextRequest) {
       .insert(sportsTable)
       .values({ title, image, description })
       .returning();
-    return NextResponse.json(sport);
+    return NextResponse.json(sport, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
