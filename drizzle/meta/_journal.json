@@ -8,6 +8,20 @@
       "when": 1753777439180,
       "tag": "0000_numerous_squadron_supreme",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1753950033257,
+      "tag": "0001_careful_wong",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1753951885084,
+      "tag": "0002_glorious_white_queen",
+      "breakpoints": true
     }
   ]
 }

@@ -51,6 +51,17 @@ export default async function NavBar() {
           Profile
         </Link>
       )}
+
+      <Link href={"/todos/create"} className="hover:text-amber-300">
+        Create todo
+      </Link>
+      <Link href={"/todos"} className="hover:text-amber-300">
+        Todos
+      </Link>
+      <Link href={"/todos/server-component"} className="hover:text-amber-300">
+        Server Component
+      </Link>
+
       <AuthButton />
       <ThemeToggler />
     </nav>
